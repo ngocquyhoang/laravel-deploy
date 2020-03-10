@@ -1,0 +1,30 @@
+name: 'Laravel Deploy'
+
+description: 'Deploy Laravel Application to Server via SSH by RSync'
+author: 'Hoang Ngoc Quy'
+branding:
+    icon: 'send'
+    color: 'green'
+
+inputs:
+    user: 
+        description: 'Deploy user'
+        required: true
+    host: 
+        description: 'Deploy host'
+        required: true
+    path: 
+        description: 'Path source on server'
+        required: true
+    owner: 
+        description: 'Deploy owner'
+        required: true
+
+runs:
+    using: 'docker'
+    image: 'Dockerfile'
+    args:
+        -   ${{ inputs.user }}
+        -   ${{ inputs.host }}
+        -   ${{ inputs.path }}
+        -   ${{ inputs.owner }}

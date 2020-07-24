@@ -26,5 +26,6 @@ runs:
     args:
         -   ${{ inputs.user }}
         -   ${{ inputs.host }}
+        -   ${{ inputs.port }}
         -   ${{ inputs.path }}
         -   ${{ inputs.owner }}

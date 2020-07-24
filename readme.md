@@ -38,6 +38,7 @@ jobs:
                 with:
                     user: user
                     host: host
+                    port: port
                     path: path
                     owner: owner
                 env:

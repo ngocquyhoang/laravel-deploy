@@ -1,7 +1,13 @@
 #!/bin/bash
 
+SSH_USER=$1
+SSH_HOST=$2
+SSH_PORT=$3
+PATH_SOURCE=$4
+OWNER=$5
+
 mkdir -p /root/.ssh
-ssh-keyscan -H "$2" >> /root/.ssh/known_hosts
+ssh-keyscan -H "$SSH_HOST" >> /root/.ssh/known_hosts
 
 if [ -z "$DEPLOY_KEY" ];
 then
@@ -14,6 +20,11 @@ else
 	echo $'\n' "------ CONFIG SUCCESSFUL! ---------------------" $'\n'
 fi
 
+if [ ! -z "$SSH_PORT" ];
+then
+        printf "Host %b\n\tPort %b\n" "$SSH_HOST" "$SSH_PORT" > /root/.ssh/config
+fi
+
 rsync --progress -avzh \
 	--exclude='.git/' \
 	--exclude='.git*' \
@@ -24,17 +35,17 @@ rsync --progress -avzh \
 	--exclude='readme.md' \
 	--exclude='README.md' \
 	-e "ssh -i /root/.ssh/id_rsa" \
-	--rsync-path="sudo rsync" . $1@$2:$3
+	--rsync-path="sudo rsync" . $SSH_USER@$SSH_HOST:$PATH_SOURCE
 
 if [ $? -eq 0 ]
 then
 	echo $'\n' "------ SYNC SUCCESSFUL! -----------------------" $'\n'
 	echo $'\n' "------ RELOADING PERMISSION -------------------" $'\n'
 
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "sudo chown -R $4:$4 $3"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "sudo chmod 775 -R $3"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "sudo chmod 777 -R $3/storage"
-	ssh -i /root/.ssh/id_rsa -t $1@$2 "sudo chmod 777 -R $3/public"
+	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chown -R $OWNER:$OWNER $PATH_SOURCE"
+	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 775 -R $PATH_SOURCE"
+	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 777 -R $PATH_SOURCE/storage"
+	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 777 -R $PATH_SOURCE/public"
 
 	echo $'\n' "------ CONGRATS! DEPLOY SUCCESSFUL!!! ---------" $'\n'
 	exit 0

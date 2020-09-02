@@ -23,6 +23,7 @@ fi
 if [ ! -z "$SSH_PORT" ];
 then
         printf "Host %b\n\tPort %b\n" "$SSH_HOST" "$SSH_PORT" > /root/.ssh/config
+	ssh-keyscan -p $SSH_PORT -H "$SSH_HOST" >> /root/.ssh/known_hosts
 fi
 
 rsync --progress -avzh \

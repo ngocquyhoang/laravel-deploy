@@ -13,6 +13,9 @@ inputs:
     host: 
         description: 'Deploy host'
         required: true
+    port: 
+        description: 'Deploy port'
+        required: false
     path: 
         description: 'Path source on server'
         required: true

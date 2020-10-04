@@ -34,7 +34,7 @@ jobs:
             -   name: Install Packages
                 run: composer install --no-dev
             -   name: Deploy to Server
-                uses: KosratDAhmed/deploy@laravel
+                uses: KosratDAhmad/deploy@laravel
                 with:
                     user: user
                     host: host

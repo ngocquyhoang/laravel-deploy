@@ -1,7 +1,7 @@
 name: 'Laravel Deploy'
 
 description: 'Deploy Laravel Application to Server via SSH by RSync'
-author: 'Hoang Ngoc Quy'
+author: 'Kosrat Ahmed'
 branding:
     icon: 'send'
     color: 'green'

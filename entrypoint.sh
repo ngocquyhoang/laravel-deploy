@@ -36,7 +36,7 @@ rsync --progress -avzh \
 	--exclude='readme.md' \
 	--exclude='README.md' \
 	-e "ssh -i /root/.ssh/id_rsa" \
-	--rsync-path="sudo rsync" . $SSH_USER@$SSH_HOST:$PATH_SOURCE
+	$SSH_USER@$SSH_HOST:$PATH_SOURCE
 
 if [ $? -eq 0 ]
 then

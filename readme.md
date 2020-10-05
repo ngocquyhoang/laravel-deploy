@@ -1,10 +1,8 @@
 <div align="center">
 
-# Laravel Deploy
+# Laravel Deploy and Migrate DB
 
-[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://ngocquyhoang.com)
-[![forthebadge](https://forthebadge.com/images/badges/contains-cat-gifs.svg)](https://ngocquyhoang.com)
-[![forthebadge](https://forthebadge.com/images/badges/powered-by-water.svg)](https://ngocquyhoang.com)
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://kosrat.dev)
 
 </div>
 
@@ -34,7 +32,7 @@ jobs:
             -   name: Install Packages
                 run: composer install --no-dev
             -   name: Deploy to Server
-                uses: ngocquyhoang/deploy@laravel
+                uses: kosratdev/laravel-deploy-migrate@laravel
                 with:
                     user: user
                     host: host

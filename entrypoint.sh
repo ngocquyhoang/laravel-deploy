@@ -47,7 +47,7 @@ then
 	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 775 -R $PATH_SOURCE"
 	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 777 -R $PATH_SOURCE/storage"
 	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "sudo chmod 777 -R $PATH_SOURCE/public"
-	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "cd $PATH_SOURCE && php artisan migrate"
+	ssh -i /root/.ssh/id_rsa -t $SSH_USER@$SSH_HOST "cd $PATH_SOURCE && php artisan migrate && php artisan modelcach:clear && php artisan cache:clear && php artisan route:cache && php artisan jwt:secret && php artisan config:cache"
 
 	echo $'\n' "------ CONGRATS! DEPLOY SUCCESSFUL!!! ---------" $'\n'
 	exit 0

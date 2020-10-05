@@ -1,7 +1,7 @@
-name: 'Laravel Deploy'
+name: 'Laravel Deployment with Migration and Cache Configurations'
 
-description: 'Deploy Laravel Application to Server via SSH by RSync'
-author: 'Hoang Ngoc Quy'
+description: 'Deploy Laravel Application to Server via SSH by RSync and then run php artisan migrate.'
+author: 'MJA'
 branding:
     icon: 'send'
     color: 'green'
